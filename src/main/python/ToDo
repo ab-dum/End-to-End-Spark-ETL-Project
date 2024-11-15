@@ -1,1 +1,36 @@
-#TODO: python code here
+1. **Set up Azure Storage Connection:**
+   - Ensure that the Azure Storage account is properly set up.
+   - Verify that the `access_key` and `storage_account_name` are correctly configured.
+   
+2. **Configure Spark Session:**
+   - Ensure that the Spark session is optimized with appropriate memory allocation and configuration.
+   - Double-check the configuration for dynamic resource allocation (`spark.dynamicAllocation`).
+
+3. **Fetch Coordinates:**
+   - Implement the function `get_coordinates` to fetch the latitude and longitude of hotels using the OpenCage API.
+   - Test if the OpenCage API is working correctly and the response data structure is parsed correctly.
+
+4. **Process Hotels Data:**
+   - Read the compressed CSV files for hotels data from Azure Storage using Spark.
+   - Check for missing or null latitude and longitude values in the hotels dataset.
+   - For hotels with missing coordinates, use `get_coordinates` to fetch their latitude and longitude.
+   - Add functionality to update the hotels DataFrame with new coordinates where available.
+
+5. **Generate Geohash:**
+   - Ensure the `generate_geohash` function is working as expected.
+   - Add a UDF to generate geohash values for the latitude and longitude columns in the hotels DataFrame.
+   - Verify that geohash values are generated correctly for all rows.
+
+6. **Weather Data:**
+   - Read weather data stored in Parquet format from Azure Storage.
+   - Test the partitioning logic for the weather data and ensure it performs well with the specified number of partitions (300).
+   - Add a geohash column to the weather DataFrame using the same UDF as used for the hotels DataFrame.
+
+7. **Data Join:**
+   - Perform a left join between the hotels DataFrame and the weather DataFrame on the "Geohash" column.
+   - Ensure the join is performed correctly, matching the corresponding weather data with the hotel data based on their geohash.
+
+8. **Enrich Data and Save:**
+   - Write the joined DataFrame (with enriched weather data) back to Azure Storage in Parquet format.
+   - Ensure the data is partitioned by "wthr_date" to allow efficient querying.
+   - Test that the data is written to the correct Azure Storage location with the proper partitioning.

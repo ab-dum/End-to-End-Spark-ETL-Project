@@ -1,1 +1,39 @@
-#TODO: python tests here
+1. Test the `get_coordinates` Function:
+   - Task: Ensure that the mock for `get_coordinates` is correctly set up to return valid coordinates for given city and address.
+   - Action: Confirm that the mock function returns appropriate latitude and longitude for a real-world city and address (e.g., "London", "10 Downing St").
+   - Expected Outcome: Check that both latitude and longitude are non-`None` and valid.
+
+2. Test the `process_hotels` Function:
+   - Task: Create a DataFrame with test data representing hotels, some of which have missing coordinates.
+   - Action: Ensure that the `process_hotels` function processes the DataFrame correctly, filling in missing coordinates and geohashing.
+   - Expected Outcome: Ensure that the output DataFrame has updated coordinates for rows with missing data and a non-zero row count.
+
+3. Test the `generate_geohash` Function:
+   - Task: Ensure that the `generate_geohash` function properly generates a 4-character geohash.
+   - Action: Pass valid latitude and longitude values to the function and check that the geohash is returned as a string with a length of 4.
+   - Expected Outcome: The geohash string should be 4 characters long and non-`None`.
+
+4. Add More Unit Tests for Edge Cases:
+   - Task: Test the edge cases for `get_coordinates`, `process_hotels`, and `generate_geohash` functions.
+   - Action: Add tests for missing data (e.g., both `latitude` and `longitude` are `None` in `process_hotels`).
+   - Expected Outcome: Ensure that edge cases such as empty strings, `None` values, or invalid API keys are handled gracefully, possibly with appropriate error handling.
+
+5. Simulate a Real API Key Call:
+   - Task: Integrate a real API call for `get_coordinates` using a valid API key.
+   - Action: If feasible, replace the mock with an actual call to the OpenCage API, passing a valid city and address to check if real API calls are handled properly in a test environment.
+   - Expected Outcome: The test should pass successfully with real data.
+
+6. Verify the Spark Session Configuration:
+   - Task: Ensure that the `SparkSession` is configured correctly with the necessary parameters for accessing Azure storage and reading/writing data.
+   - Action: Review the configuration of `cls.spark.conf.set()` for proper connection to Azure Storage with the access key.
+   - Expected Outcome: The test should work as expected without errors related to storage connectivity.
+
+7. Ensure Test Cleanup:
+   - Task: Ensure that SparkSession is properly stopped during the `tearDownClass` method.
+   - Action: Confirm that `cls.spark.stop()` is correctly called to clean up resources after each test run.
+   - Expected Outcome: The test should run without any resource leaks.
+
+8. Ensure the Correct Structure of the Mock Data:
+   - Task: In the `test_process_hotels` function, ensure that the structure of the mock data corresponds to the schema expected by `process_hotels` (with latitude, longitude, and other necessary fields).
+   - Action: Double-check that the mock data is properly formatted and passed correctly to the `process_hotels` function.
+   - Expected Outcome: The mock data should align with the expected schema, and the function should process it correctly.
