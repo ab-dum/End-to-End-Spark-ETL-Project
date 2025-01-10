@@ -40,8 +40,8 @@ Before starting the project, we need to ensure that the following tools and serv
 The repository should first be forked to our GitLab account. Then, it can be cloned to our local machine using the following command:
 
 ```bash
-git clone git@git.epam.com:abdullah_duman/m06_sparkbasics_python_azure.git
-cd m06_sparkbasics_python_azure
+git clone git@git.lab.com:abdullah_duman/sparkbasics_python_azure.git
+cd sparkbasics_python_azure
 ```
 
 ### 2. Initialize Terraform
